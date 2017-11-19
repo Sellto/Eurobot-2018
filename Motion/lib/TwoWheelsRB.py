@@ -1,6 +1,7 @@
 import yaml
 
 from lib.Wheel import DC_Wheel
+from lib.Encoder import Decoder
 
 
 class TwoWheelsRB:
@@ -8,17 +9,25 @@ class TwoWheelsRB:
         config = yaml.load(open(file))
         self.__ros_connection = None
         self.__left_wheel  = DC_Wheel(pi,
-                                      config["L_pin1"],
-                                      config["L_pin2"],
-                                      config["L_pwm_pin"],
+                                      config["L_DC_pin1"],
+                                      config["L_DC_pin2"],
+                                      config["L_DC_pwm_pin"],
                                       config["PWM_Frequency"],
                                       config["PWM_Range"])
         self.__right_wheel = DC_Wheel(pi,
-                                      config["R_pin1"],
-                                      config["R_pin2"],
-                                      config["R_pwm_pin"],
+                                      config["R_DC_pin1"],
+                                      config["R_DC_pin2"],
+                                      config["R_DC_pwm_pin"],
                                       config["PWM_Frequency"],
                                       config["PWM_Range"])
+        self.__left_encoder = Decoder(pi,
+                                       config["L_RD_pinA"],
+                                       config["L_RD_pinB"],
+                                       )
+        self.__right_encoder = Decoder(pi,
+                                       config["R_RD_pinA"],
+                                       config["R_RD_pinB"],
+                                       )
 
     def move(self,speed):
         self.right_wheel.move(speed)
@@ -36,3 +45,11 @@ class TwoWheelsRB:
     @property
     def right_wheel(self):
         return self.__right_wheel
+
+    @property
+    def left_encoder(self):
+        return self.__left_encoder
+
+    @property
+    def right_encoder(self):
+        return self.__right_encoder

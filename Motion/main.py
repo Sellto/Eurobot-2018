@@ -9,9 +9,13 @@ import yaml
 from lib.TwoWheelsRB import *
 
 if __name__ == '__main__':
-    myRB = TwoWheelsRB(pigpio.pi(),"TwoWheelsRB.yaml")
+    mypi = pigpio.pi()
+    myRB = TwoWheelsRB(mypi,"TwoWheelsRB.yaml")
     myRB.move(75)
     time.sleep(5)
     myRB.brake()
+    myRB.right_encoder.cancel()
+    myRB.left_encoder.cancel()
+
 
 
