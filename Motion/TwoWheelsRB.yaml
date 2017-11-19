@@ -1,8 +1,8 @@
-ROS_Connection:
-L_pin1:
-L_pin2:
-L_pwd_pin:
-R_pin1:
-R_pin2:
-R_pwd_pin:
-PWD_Frequency :
+L_pwd_pin: 4
+L_pin1: 5
+L_pin2: 6
+R_pwd_pin: 22
+R_pin1: 23
+R_pin2: 24
+PWD_Frequency : 50
+PWD_Range : 100
