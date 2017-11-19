@@ -9,7 +9,7 @@ class DC_Wheel:
         for pin_num in self.__conn.values():
             self.__pi.set_mode(pin_num, pigpio.OUTPUT)
         self.__pi.set_PWM_frequency(self.__conn["pwm"], self.__pwm["freq"])
-        self.__pi.set_PWM_range(self.__conn["range"], self.__pwm["range"])
+        self.__pi.set_PWM_range(self.__conn["pwm"], self.__pwm["range"])
 
     # Try with the pwm on the enable and keep pin1 and pin2 in the same state during the movement
     # Advantage only 1 PWMs - Disadvantage 3 pins needed for each wheels.
@@ -17,7 +17,8 @@ class DC_Wheel:
     # Direction transform value into "Boolean"
 
     def move(self, value):
-        direction = (value + abs(value))/(2*abs(value))
+        direction = (value + abs(value))//(2*abs(value))
+        print(direction)
         self.__pi.write(self.__conn["cmd1"], direction)
         self.__pi.write(self.__conn["cmd2"], not direction)
         self.__pi.set_PWM_dutycycle(self.__conn["pwm"], abs(value))

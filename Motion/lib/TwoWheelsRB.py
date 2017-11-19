@@ -5,22 +5,22 @@ from lib.Wheel import DC_Wheel
 
 class TwoWheelsRB:
     def __init__(self, pi, file):
-        config = yaml.load(file)
+        config = yaml.load(open(file))
         self.__ros_connection = None
         self.__left_wheel  = DC_Wheel(pi,
                                       config["L_pin1"],
                                       config["L_pin2"],
-                                      config["L_pwd_pin"],
-                                      config["PWD_Frequency "],
-                                      config["PWD_Range"])
+                                      config["L_pwm_pin"],
+                                      config["PWM_Frequency"],
+                                      config["PWM_Range"])
         self.__right_wheel = DC_Wheel(pi,
                                       config["R_pin1"],
                                       config["R_pin2"],
-                                      config["R_pwd_pin"],
-                                      config["PWD_Frequency "],
-                                      config["PWD_Range"])
+                                      config["R_pwm_pin"],
+                                      config["PWM_Frequency"],
+                                      config["PWM_Range"])
 
-    def move(self, speed):
+    def move(self,speed):
         self.right_wheel.move(speed)
         self.left_wheel.move(speed)
 

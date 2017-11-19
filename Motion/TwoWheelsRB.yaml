@@ -1,8 +1,8 @@
-L_pwd_pin: 4
+L_pwm_pin: 4
 L_pin1: 5
 L_pin2: 6
-R_pwd_pin: 22
+R_pwm_pin: 22
 R_pin1: 23
 R_pin2: 24
-PWD_Frequency : 50
-PWD_Range : 100
+PWM_Frequency : 50
+PWM_Range : 100
