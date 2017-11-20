@@ -10,7 +10,7 @@ from lib.TwoWheelsRB import *
 
 if __name__ == '__main__':
     mypi = pigpio.pi()
-    myRB = TwoWheelsRB(mypi,"TwoWheelsRB.yaml")
+    myRB = TwoWheelsRB(mypi, "TwoWheelsRB.yaml", 0x14)
     myRB.move(75)
     time.sleep(5)
     myRB.brake()

@@ -2,11 +2,13 @@ import yaml
 
 from lib.Wheel import DC_Wheel
 from lib.Encoder import Decoder
+from lib.I2Cslave import I2CSlave
 
 
-class TwoWheelsRB:
-    def __init__(self, pi, file):
+class TwoWheelsRB(I2CSlave):
+    def __init__(self, pi, file, i2c_addr=0x13):
         config = yaml.load(open(file))
+        I2CSlave.__init__(self,pi, i2c_addr)
         self.__ros_connection = None
         self.__left_wheel  = DC_Wheel(pi,
                                       config["L_DC_pin1"],
